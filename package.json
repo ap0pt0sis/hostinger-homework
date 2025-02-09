@@ -1,0 +1,25 @@
+{
+  "name": "hostinger-homework",
+  "version": "1.0.0",
+  "description": "To install playwright click [here](https://playwright.dev/docs/intro).",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ap0pt0sis/hostinger-homework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ap0pt0sis/hostinger-homework/issues"
+  },
+  "homepage": "https://github.com/ap0pt0sis/hostinger-homework#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
