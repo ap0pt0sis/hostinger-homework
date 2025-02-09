@@ -8,7 +8,7 @@ test('Initiate purchase for the first displayed item', async ({ page }) => {
   const url = process.env.URL;
   await page.goto(url);
 
-  // Open shop, select two units of the items and add to shopping bag
+  // Open shop, select two units of the items, add to shopping bag and validate cost
   await page.click(shop.shopMenuItem);
   await page.click(shop.shopItem);
   const priceText = await page.locator(item.itemPrice).innerText();
@@ -33,7 +33,7 @@ test('Initiate purchase for the first displayed item', async ({ page }) => {
   await page.fill(shoppingBag.contactInformationPhoneNumber, shippingInformation.phoneNumber);
   await page.fill(shoppingBag.contactInformationComment, shippingInformation.comment);
 
-  // Validate cost and place Order
+  // Validate cost and place order
   const shippingPriceText = await page.locator(shoppingBag.shippingPrice).innerText();
   const shippingPriceNumber = parseFloat(shippingPriceText.replace("€", ""));
   const totalPriceText = await page.locator(shoppingBag.totalPrice).innerText();
@@ -41,5 +41,6 @@ test('Initiate purchase for the first displayed item', async ({ page }) => {
   expect(((priceNumber * 2) + shippingPriceNumber)).toEqual(totalPriceNumber);
   await page.getByRole('button', { name: 'Continue' }).dblclick();
   await page.getByRole('button', { name: 'Place an order' }).click();
+  await expect(page.locator(item.thankForOrderModal)).toBeVisible();
   await page.getByRole('button', { name: 'Got it' }).click();
 });
